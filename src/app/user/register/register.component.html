@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="register()">
+  <section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem">
+            <div class="card-body p-5 text-center">
+              <div class="mb-md-5 mt-md-4">
+                <h2 class="fw-bold mb-3 text-uppercase">New Account</h2>
+
+                <div class="form-outline form-white mb-4">
+                  <input type="email" name="email" id="typeEmailX" placeholder="Email"
+                    class="form-control form-control-lg" #inputEmail formControlName="email" required="" />
+
+                  <ng-container *ngIf="form.get('email')?.touched">
+                    <div class="errors-container">
+                      <p class="validation-error" *ngIf="form.get('email')?.errors?.['required']">Email address is
+                        required!</p>
+                      <p class=" validation-error" *ngIf="form.get('email')?.errors?.['appEmailValidator']">Email
+                        address is not
+                        valid!</p>
+                    </div>
+                  </ng-container>
+                </div>
+
+                <ng-container formGroupName="passGroup">
+
+                  <div class="form-outline form-white mb-4">
+                    <input type="password" id="typePasswordX" name="password" placeholder="Password"
+                      class="form-control form-control-lg" formControlName="password" #inputPassword minlength="5"
+                      required />
+
+
+                    <div class="errors-container" *ngIf="form.get('passGroup')?.get('password')?.touched">
+                      <p class="validation-error" *ngIf="form.get('passGroup')?.get('password')?.errors?.['required']">
+                        Password is
+                        required!</p>
+                      <p class="validation-error" *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']">
+                        Password is not valid!</p>
+                    </div>
+
+                  </div>
+                  <div class="form-outline form-white mb-4">
+                    <input type="password" id="rePasswordX" name="rePass" placeholder="Repeat your password"
+                      class="form-control form-control-lg" formControlName="repeatPassword" required />
+
+                    <ng-container *ngIf="form.get('passGroup')?.get('repeatPassword')?.touched">
+                      <div class="errors-container">
+                        <p class="validation-error"
+                          *ngIf="form.get('passGroup')?.errors?.['matchPasswordsValidator'] ||form.get('passGroup')?.get('repeatPassword')?.errors?.['required']">
+                          Repeat password does not match password!</p>
+                      </div>
+                    </ng-container>
+                  </div>
+                </ng-container>
+                <!-- {{form.value|json}} -->
+
+                <!-- <p class="small mb-5 pb-lg-2">
+                  <a class="text-white-50" href="#!">Forgot password?</a>
+                </p> -->
+
+                <button class="btn btn-outline-light btn-lg px-5">
+                  Register
+                </button>
+              </div>
+
+              <div>
+                <p class="mb-0">
+                  Have an account?
+                  <a routerLink="/login" class="text-white-50 fw-bold">Log In</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("assets/fonts/Roboto-Bold.ttf");
+}
+
+body {
+  font-family: Roboto;
+}
+
+.validation-error {
+  color: red;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 10px;
+}
+
+
+
+input::placeholder {
+  font-weight: 500;
+  opacity: 0.5;
+  color: rgba(0, 0, 0, 0.568);
+  font-size: 12px;
+}
