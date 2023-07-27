@@ -7,6 +7,6 @@ import { EmailDirective } from './validators/email.directive';
 @NgModule({
   declarations: [LoaderComponent, ConfirmModalComponent, EmailDirective],
   imports: [CommonModule],
-  exports: [ConfirmModalComponent, EmailDirective],
+  exports: [ConfirmModalComponent, EmailDirective, LoaderComponent],
 })
 export class SharedModule {}

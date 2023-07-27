@@ -13,9 +13,11 @@ export class HeaderComponent {
    */
   constructor(private userService: UserService, private router: Router) {}
   faBars = faBars;
+
   get isLogged(): boolean {
     return this.userService.isLogged;
   }
+
   get userEmail() {
     let userName;
     if (this.userService.user?.email) {
@@ -25,7 +27,13 @@ export class HeaderComponent {
     else return 'Guest';
   }
   logout() {
-    this.userService.logout();
-    this.router.navigate(['/']);
+    this.userService.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.router.navigate(['/']);
+      },
+    });
   }
 }

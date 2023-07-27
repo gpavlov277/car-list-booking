@@ -16,9 +16,15 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { EmailDirective } from './shared/validators/email.directive';
 import { appInterceptorProvider } from './app.interceptor';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, CarListComponent],
+  declarations: [
+    AppComponent,
+    MainComponent,
+    CarListComponent,
+    AuthenticateComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

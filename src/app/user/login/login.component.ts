@@ -11,15 +11,17 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent {
   appEmailDomains = [''];
+
   constructor(private userService: UserService, private router: Router) {}
   faSignIn = faSignIn;
+
   login(form: NgForm) {
     if (form.invalid) {
       console.log('Invalid form inputs!');
       return;
     }
     const { email, password } = form.value;
-    console.log(email, password);
+
     this.userService.login(email, password).subscribe(() => {
       this.router.navigate(['/']);
     });
