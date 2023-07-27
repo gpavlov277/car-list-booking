@@ -13,6 +13,7 @@ export class AuthenticateComponent implements OnInit {
    *
    */
   constructor(private userService: UserService) {}
+
   ngOnInit(): void {
     this.userService.getUserProfile().subscribe({
       next: () => {

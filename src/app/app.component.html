@@ -1,3 +1,5 @@
-<app-header *ngIf="!hideCore" />
-<router-outlet />
-<app-footer *ngIf="!hideCore" />
+<app-authenticate>
+    <app-header *ngIf="!hideCore" />
+    <router-outlet />
+    <app-footer *ngIf="!hideCore" />
+</app-authenticate>
