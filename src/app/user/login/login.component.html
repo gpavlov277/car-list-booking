@@ -32,14 +32,16 @@
                     <p class="validation-error" *ngIf="inputPassword.errors?.['minlength']">Password must be at least 5
                       characters!</p>
                   </ng-container>
+                  <p class="validation-error">{{loginError}}</p>
                 </div>
 
 
-                <button class="btn btn-outline-light btn-lg px-5 mb-4" type="submit">
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">
                   Login
                 </button>
               </div>
 
+              <app-loader *ngIf="isLoading"></app-loader>
               <div>
                 <p class="mb-0">
                   Don't have an account?

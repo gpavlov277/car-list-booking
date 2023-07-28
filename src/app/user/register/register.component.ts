@@ -11,6 +11,8 @@ import { matchPasswordsValidator } from 'src/app/shared/validators/password-matc
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnDestroy {
+  registerError: string = '';
+  isLoading: boolean = false;
   constructor(
     private userService: UserService,
     private router: Router,
@@ -30,17 +32,28 @@ export class RegisterComponent implements OnDestroy {
     ),
   });
   register() {
+    this.isLoading = true;
     if (this.form.invalid) {
+      this.registerError = 'Invalid inputs!';
+      this.isLoading = false;
       return;
     }
     const { email, passGroup: { password, repeatPassword } = {} } =
       this.form.value;
-
-    this.userService
-      .register(email!, password!, repeatPassword!)
-      .subscribe(() => {
-        this.router.navigate(['/']);
+    setTimeout(() => {
+      this.userService.register(email!, password!, repeatPassword!).subscribe({
+        error: (err) => {
+          console.log(err);
+          this.registerError = err.error.message;
+          this.isLoading = false;
+        },
+        complete: () => {
+          this.registerError = '';
+          this.isLoading = false;
+          this.router.navigate(['/']);
+        },
       });
+    }, 1000);
   }
   ngOnDestroy(): void {}
 }
