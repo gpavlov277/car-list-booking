@@ -22,6 +22,11 @@ body {
   margin-top: 10px;
 }
 
+.error-container {
+  min-height: 50px;
+  margin-bottom: 10px;
+}
+
 
 
 input::placeholder {

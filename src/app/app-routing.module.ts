@@ -11,8 +11,8 @@ import { EditVehicleComponent } from './car/edit-vehicle/edit-vehicle.component'
 import { DetailVehicleComponent } from './car/detail-vehicle/detail-vehicle.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/home' },
-  { path: 'home', component: MainComponent },
+  { path: 'home', redirectTo: '' },
+  { path: '', pathMatch: 'full', component: MainComponent },
   {
     path: 'add-vehicle',
     component: AddVehicleComponent,

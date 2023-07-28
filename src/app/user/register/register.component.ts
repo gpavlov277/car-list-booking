@@ -31,11 +31,18 @@ export class RegisterComponent implements OnDestroy {
       }
     ),
   });
+
+  clearErr() {
+    setTimeout(() => {
+      this.registerError = '';
+    }, 3000);
+  }
   register() {
     this.isLoading = true;
     if (this.form.invalid) {
       this.registerError = 'Invalid inputs!';
       this.isLoading = false;
+      this.clearErr();
       return;
     }
     const { email, passGroup: { password, repeatPassword } = {} } =
@@ -46,6 +53,7 @@ export class RegisterComponent implements OnDestroy {
           console.log(err);
           this.registerError = err.error.message;
           this.isLoading = false;
+          this.clearErr();
         },
         complete: () => {
           this.registerError = '';

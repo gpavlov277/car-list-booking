@@ -19,7 +19,10 @@ export class LoginComponent {
 
   login(form: NgForm) {
     if (form.invalid) {
-      this.loginError = 'All fields are required!';
+      this.loginError = 'Invalid inputs!';
+      setTimeout(() => {
+        this.loginError = '';
+      }, 3000);
       return;
     }
     this.isLoading = true;
