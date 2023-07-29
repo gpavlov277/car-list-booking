@@ -10,4 +10,5 @@ export interface Vehicle {
   updatedAt: string;
   userId: string;
   year: string;
+  image: string;
 }

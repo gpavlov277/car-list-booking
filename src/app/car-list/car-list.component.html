@@ -58,7 +58,7 @@
             <td>{{car.location}}</td>
             <td><span class="status text-success">&bull;</span> Active</td>
             <td>
-              <a routerLink="/edit-vehicle" class="settings" title="Edit" data-toggle="tooltip"><fa-icon
+              <a routerLink="/edit-vehicle/{{car._id}}" class="settings" title="Edit" data-toggle="tooltip"><fa-icon
                   [icon]="faEdit"></fa-icon></a>
               <a class="delete" title="Delete" data-toggle="tooltip" type="button" data-bs-toggle="modal"
                 data-bs-target="#confirmModal"><fa-icon [icon]="faTrash"></fa-icon></a>

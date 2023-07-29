@@ -29,7 +29,7 @@ const routes: Routes = [
     canActivate: [AuthActivate],
   },
   {
-    path: 'edit-vehicle',
+    path: 'edit-vehicle/:vehicleId',
     component: EditVehicleComponent,
     canActivate: [AuthActivate],
   },

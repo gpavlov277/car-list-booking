@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   faAdd,
   faEdit,
@@ -13,7 +13,7 @@ import { Vehicle } from '../types/vehicle';
   templateUrl: './car-list.component.html',
   styleUrls: ['./car-list.component.css'],
 })
-export class CarListComponent implements OnInit {
+export class CarListComponent implements OnInit, OnDestroy {
   faAdd = faAdd;
   faEdit = faEdit;
   faTrash = faTrash;
@@ -27,7 +27,6 @@ export class CarListComponent implements OnInit {
 
   getAllCars() {
     this.carListService.getAllVehicles().subscribe((data) => {
-      console.log(data);
       this.allCars = data;
       this.isLoading = false;
     });
@@ -35,4 +34,5 @@ export class CarListComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCars();
   }
+  ngOnDestroy(): void {}
 }

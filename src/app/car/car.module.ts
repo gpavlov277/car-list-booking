@@ -6,9 +6,10 @@ import { AppModule } from '../app.module';
 import { BookedComponent } from './booked/booked.component';
 import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 import { DetailVehicleComponent } from './detail-vehicle/detail-vehicle.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SuccessComponent } from '../shared/success/success.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,13 @@ import { SharedModule } from '../shared/shared.module';
     EditVehicleComponent,
     DetailVehicleComponent,
   ],
-  imports: [CommonModule, FormsModule, SharedModule],
-  exports: [AddVehicleComponent, DetailVehicleComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    ReactiveFormsModule,
+    RouterModule,
+  ],
+  exports: [AddVehicleComponent, DetailVehicleComponent, EditVehicleComponent],
 })
 export class CarModule {}
