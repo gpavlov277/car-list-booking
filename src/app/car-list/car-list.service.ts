@@ -14,4 +14,9 @@ export class CarListService {
   deleteVehicle(id: string) {
     return this.http.delete(`/api/vehicle/delete/${id}`);
   }
+  likeVehicle(vehicleId: string, userId: string) {
+    return this.http.put(`/api/vehicle/like/${vehicleId}`, {
+      userId,
+    });
+  }
 }

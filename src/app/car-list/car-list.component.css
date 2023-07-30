@@ -155,8 +155,13 @@ table.table .avatar {
   font-size: 13px;
 }
 
-.heart-red {
+.heart-liked {
   color: red;
+  cursor: pointer;
+}
+
+.heart-normal {
+  color: rgb(184, 179, 179);
   cursor: pointer;
 }
 

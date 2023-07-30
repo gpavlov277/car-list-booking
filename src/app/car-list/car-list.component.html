@@ -42,7 +42,7 @@
         <tbody>
           <tr *ngFor="let car of allCars">
             <td>
-              <span class="heart-red"><fa-icon [icon]="faHeart"></fa-icon></span>
+              <span (click)="onLike(car._id)" class="heart-normal"><fa-icon [icon]="faHeart"></fa-icon></span>
             </td>
             <td>
               <a href="#"><img [src]="car.image" class="avatar" alt="IMG" />

@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { CarListService } from './car-list.service';
 import { Router } from '@angular/router';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-car-list',
@@ -27,7 +28,11 @@ export class CarListComponent implements OnInit {
   vehicleId = '';
   btnEl: any;
 
-  constructor(private carListService: CarListService, private router: Router) {}
+  constructor(
+    private carListService: CarListService,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   getAllCars() {
     this.carListService.getAllVehicles().subscribe((data) => {
@@ -55,5 +60,16 @@ export class CarListComponent implements OnInit {
         },
       });
     }
+  }
+  onLike(vehicleId: string): void {
+    const userId = this.userService.userId;
+    this.carListService.likeVehicle(vehicleId, userId!).subscribe({
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('Liked');
+      },
+    });
   }
 }
