@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
-import { MainComponent } from './main/main.component';
+
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CarListComponent } from './car-list/car-list.component';
@@ -21,7 +21,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
+ 
     CarListComponent,
     AuthenticateComponent,
   ],

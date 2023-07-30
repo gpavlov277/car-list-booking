@@ -1,0 +1,14 @@
+<div class="toast toast-fixed fade show toast-success" id="placement-toast" role="alert" aria-live="assertive"
+    aria-atomic="true" data-mdb-autohide="false" data-mdb-position="top-right" data-mdb-append-to-body="true"
+    data-mdb-stacking="false" data-mdb-width="350px" data-mdb-color="info"
+    style="width: 350px; display: block; top: 10px; right: 10px; bottom: unset; left: unset; transform: unset;">
+    <div class="toast-header toast-success">
+        <fa-icon [icon]="faCheck"></fa-icon>
+
+        <strong class="me-auto">{{successToastTitle}}</strong>
+        <!-- <small>11 mins ago</small> -->
+        <button type="button" class="btn-close" data-mdb-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">{{successToastBody}}</div>
+    <div></div>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EditVehicleService } from './edit-vehicle.service';
 import { Vehicle } from 'src/app/types/vehicle';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Observable, Subscriber } from 'rxjs';
 
@@ -13,14 +13,16 @@ import { Observable, Subscriber } from 'rxjs';
 export class EditVehicleComponent implements OnInit {
   vehicle: Vehicle | undefined;
   isLoading: boolean = true;
-  selectedImage: undefined | string;
+  selectedImage: string | undefined;
+  errorMessage: string | undefined;
 
   /**
    *
    */
   constructor(
     private vehicleEditService: EditVehicleService,
-    private activatedRoute: ActivatedRoute // private editForm: NgForm
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   getVehicle(id: string) {
@@ -31,9 +33,26 @@ export class EditVehicleComponent implements OnInit {
   }
 
   updateVehicle(editForm: NgForm) {
-    console.log(this.vehicle?._id);
-    console.log(editForm.value);
-    console.log('submit edit');
+    this.isLoading = true;
+    const id = this.vehicle?._id;
+    const { make, model, power, color, year, location } = editForm.value;
+    const image = this.selectedImage;
+
+    this.vehicleEditService
+      .editVehicle(id!, make, model, power, color, year, location, image!)
+      .subscribe({
+        error: (err) => {
+          this.isLoading = false;
+          this.errorMessage = err.error.message;
+          setTimeout(() => {
+            this.errorMessage = undefined;
+          }, 3000);
+        },
+        complete: () => {
+          this.isLoading = false;
+          this.router.navigate(['/']);
+        },
+      });
   }
 
   ngOnInit(): void {

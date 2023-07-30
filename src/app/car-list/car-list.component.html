@@ -40,12 +40,6 @@
         </thead>
 
         <tbody>
-
-
-          <!-- .......................................... -->
-
-
-
           <tr *ngFor="let car of allCars">
             <td>
               <span class="heart-red"><fa-icon [icon]="faHeart"></fa-icon></span>
@@ -60,100 +54,57 @@
             <td>
               <a routerLink="/edit-vehicle/{{car._id}}" class="settings" title="Edit" data-toggle="tooltip"><fa-icon
                   [icon]="faEdit"></fa-icon></a>
-              <a class="delete" title="Delete" data-toggle="tooltip" type="button" data-bs-toggle="modal"
-                data-bs-target="#confirmModal"><fa-icon [icon]="faTrash"></fa-icon></a>
+              <a class="delete" title="Delete" data-toggle="tooltip" type="button" data-bs-toggle="modal" #deleteBtn
+                data-bs-target="#confirmModal"><fa-icon [icon]="faTrash"
+                  (click)="getId(car._id,deleteBtn)"></fa-icon></a>
             </td>
           </tr>
-
-          <!-- .......................................... -->
-
         </tbody>
       </table>
     </div>
   </div>
 </div>
-<app-confirm-modal />
+
+<app-confirm-modal [vehicleIdItem]="vehicleId" (deleteEvent)="onDelete($event)"></app-confirm-modal>
 <!-- <tr>
       <td>2</td>
       <td>
-        <a href="#"
-          ><img
-            src="assets/images/cars/eqs-suv.webp"
-            class="avatar"
-            alt="Avatar"
-          />
-          Mercedes-Benz EQS580 SUV</a
-        >
-      </td>
-      <td>05/08/2014</td>
-      <td>Publisher</td>
-      <td><span class="status text-success">&bull;</span> Active</td>
-      <td>
-        <a
-          href="#"
-          class="settings"
-          title="Settings"
-          data-toggle="tooltip"
-          ><i class="material-icons">&#xE8B8;</i></a
-        >
-        <a href="#" class="delete" title="Delete" data-toggle="tooltip"
-          ><i class="material-icons">&#xE5C9;</i></a
-        >
-      </td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>
-        <a href="#"
-          ><img
-            src="assets/images/cars/s-class.webp"
-            class="avatar"
-            alt="Avatar"
-          />
-          Mercedes-Benz S580L 4Matic</a
-        >
-      </td>
-      <td>11/05/2015</td>
-      <td>Publisher</td>
-      <td><span class="status text-danger">&bull;</span> Suspended</td>
-      <td>
-        <a
-          href="#"
-          class="settings"
-          title="Settings"
-          data-toggle="tooltip"
-          ><i class="material-icons">&#xE8B8;</i></a
-        >
-        <a href="#" class="delete" title="Delete" data-toggle="tooltip"
-          ><i class="material-icons">&#xE5C9;</i></a
-        >
-      </td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>
-        <a href="#"
-          ><img
-            src="assets/images/cars/c-class.webp"
-            class="avatar"
-            alt="Avatar"
-          />
-          Mercedes-Benz C220d</a
-        >
-      </td>
-      <td>06/09/2016</td>
-      <td>Reviewer</td>
-      <td><span class="status text-success">&bull;</span> Active</td>
-      <td>
-        <a
-          href="#"
-          class="settings"
-          title="Settings"
-          data-toggle="tooltip"
-          ><i class="material-icons">&#xE8B8;</i></a
-        >
-        <a href="#" class="delete" title="Delete" data-toggle="tooltip"
-          ><i class="material-icons">&#xE5C9;</i></a
-        >
-      </td>
-    </tr> -->
+        <a href=" #"><img src="assets/images/cars/eqs-suv.webp" class="avatar" alt="Avatar" />
+  Mercedes-Benz EQS580 SUV</a>
+  </td>
+  <td>05/08/2014</td>
+  <td>Publisher</td>
+  <td><span class="status text-success">&bull;</span> Active</td>
+  <td>
+    <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+  </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <a href="#"><img src="assets/images/cars/s-class.webp" class="avatar" alt="Avatar" />
+        Mercedes-Benz S580L 4Matic</a>
+    </td>
+    <td>11/05/2015</td>
+    <td>Publisher</td>
+    <td><span class="status text-danger">&bull;</span> Suspended</td>
+    <td>
+      <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+      <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+    </td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>
+      <a href="#"><img src="assets/images/cars/c-class.webp" class="avatar" alt="Avatar" />
+        Mercedes-Benz C220d</a>
+    </td>
+    <td>06/09/2016</td>
+    <td>Reviewer</td>
+    <td><span class="status text-success">&bull;</span> Active</td>
+    <td>
+      <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+      <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+    </td>
+  </tr> -->

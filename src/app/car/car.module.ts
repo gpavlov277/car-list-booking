@@ -7,7 +7,7 @@ import { BookedComponent } from './booked/booked.component';
 import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 import { DetailVehicleComponent } from './detail-vehicle/detail-vehicle.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SuccessComponent } from '../shared/success/success.component';
+
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 
@@ -26,6 +26,6 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule,
   ],
-  exports: [AddVehicleComponent, DetailVehicleComponent, EditVehicleComponent],
+  exports: [AddVehicleComponent, DetailVehicleComponent],
 })
 export class CarModule {}

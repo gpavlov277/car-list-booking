@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CarListService } from 'src/app/car-list/car-list.service';
 
 @Component({
   selector: 'app-confirm-modal',
@@ -6,12 +9,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./confirm-modal.component.css'],
 })
 export class ConfirmModalComponent {
-  /**
-   *
-   */
-  constructor() {}
+  @Input() vehicleIdItem = '';
+  @Output() deleteEvent = new EventEmitter<boolean>();
+  showModal = false;
+  constructor(private router: Router, private carListService: CarListService) {}
 
-  onDelete() {
-    console.log('Deleted');
+  deleteItem(value: boolean) {
+    this.deleteEvent.emit(value);
   }
 }

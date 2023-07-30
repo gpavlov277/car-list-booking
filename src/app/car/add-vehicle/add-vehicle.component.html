@@ -7,8 +7,9 @@
     </div>
     <div class="container gradient-custom mt-3">
       <div class="row justify-content-center mt-4 mb-2">
-        <form #form="ngForm" (ngSubmit)="addVehicle(form)" class="w-75">
-          <app-success *ngIf="showSuccessMsg"></app-success>
+        <form #form="ngForm" (ngSubmit)="addVehicle(form)" class="w-100">
+          <app-success *ngIf="showSuccessMsg" [successToastTitle]="successTitleMsg"
+            [successToastBody]="successBodyMsg"></app-success>
           <div class="form-group">
             <label for="car-make">Make</label>
             <input type="text" class="form-control" name="make" #make="ngModel" ngModel />

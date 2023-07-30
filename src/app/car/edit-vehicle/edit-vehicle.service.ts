@@ -6,8 +6,25 @@ import { Vehicle } from 'src/app/types/vehicle';
   providedIn: 'root',
 })
 export class EditVehicleService {
-  editVehicle(id: string, data: Object) {
-    return this.http.put(`/api/vehicle/edit/${id}`, { ...data });
+  editVehicle(
+    id: string,
+    make: string,
+    model: string,
+    horsepower: string,
+    color: string,
+    year: string,
+    location: string,
+    image: string
+  ) {
+    return this.http.put(`/api/vehicle/edit/${id}`, {
+      make,
+      model,
+      horsepower,
+      color,
+      year,
+      location,
+      image,
+    });
   }
 
   getVehicleById(id: string) {

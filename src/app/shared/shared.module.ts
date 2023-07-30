@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { LoaderComponent } from './loader/loader.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { EmailDirective } from './validators/email.directive';
-import { SuccessComponent } from './success/success.component';
+import { SuccessComponent } from './success-toast/success.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { SuccessComponent } from './success/success.component';
     EmailDirective,
     SuccessComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, FontAwesomeModule],
   exports: [
     ConfirmModalComponent,
     EmailDirective,

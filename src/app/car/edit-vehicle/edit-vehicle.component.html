@@ -17,55 +17,63 @@
 
 
 
-        <form #editForm="ngForm" class="w-75" *ngIf="!isLoading" (ngSubmit)="updateVehicle(editForm)">
+        <form #editForm="ngForm" class="w-100" *ngIf="!isLoading" (ngSubmit)="updateVehicle(editForm)">
           <div class="form-group">
-            <label for="car-make">Make</label>
-            <input type="text" class="form-control" name="car-make" ngModel="{{vehicle?.make}}" />
+            <label for="make">Make</label>
+            <input type="text" class="form-control" name="make" ngModel="{{vehicle?.make}}" />
           </div>
 
           <div class="form-group">
-            <label for="car-model">Model</label>
-            <input type="text" class="form-control" name="car-model" ngModel="{{vehicle?.model}}" />
+            <label for="model">Model</label>
+            <input type="text" class="form-control" name="model" ngModel="{{vehicle?.model}}" />
           </div>
 
           <div class="form-group">
-            <label for="car-power">Horsepower</label>
-            <input type="text" class="form-control" name="car-power" ngModel="{{vehicle?.horsepower}}" />
+            <label for="power">Horsepower</label>
+            <input type="text" class="form-control" name="power" ngModel="{{vehicle?.horsepower}}" />
           </div>
 
           <div class="form-group">
-            <label for="car-color">Color</label>
-            <input type="text" class="form-control" name="car-color" ngModel="{{vehicle?.color}}" />
+            <label for="color">Color</label>
+            <input type="text" class="form-control" name="color" ngModel="{{vehicle?.color}}" />
           </div>
 
           <div class="form-group">
-            <label for="car-year">Year</label>
-            <input type="text" class="form-control" name="car-year" ngModel="{{vehicle?.year}}" />
+            <label for="year">Year</label>
+            <input type="text" class="form-control" name="year" ngModel="{{vehicle?.year}}" />
           </div>
 
           <div class="form-group">
-            <label for="car-year">Location</label>
-            <input type="text" class="form-control" name="car-location" ngModel="{{vehicle?.location}}" />
+            <label for="year">Location</label>
+            <input type="text" class="form-control" name="location" ngModel="{{vehicle?.location}}" />
           </div>
 
           <div class="form-group">
             <p>Image</p>
-            <input type="file" class="form-control-file" name="car-image" accept="image/*" (change)="onUpload($event)"
+            <input type="file" class="form-control-file" name="image" accept="image/*" (change)="onUpload($event)"
               #image="ngModel" ngModel />
           </div>
           <div class="form-group" *ngIf="!selectedImage">
             <img src={{vehicle?.image}} class="img-thumbnail img-preview mt-2 mb-2">
+
           </div>
           <div class="form-group" *ngIf="selectedImage">
             <img [src]="selectedImage" class="img-thumbnail img-preview mt-2 mb-2">
+
 
           </div>
           <div class="container">
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-start">
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                <button type="submit" class="btn btn-primary mt-3">Save</button>
                 <a routerLink="/" class="btn btn-danger mt-3 close-btn">Close</a>
               </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="container-loader">
+              <p *ngIf="errorMessage" class="validation-error">{{errorMessage}}</p>
 
             </div>
           </div>

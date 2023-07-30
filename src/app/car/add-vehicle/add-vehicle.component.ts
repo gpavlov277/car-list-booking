@@ -17,6 +17,8 @@ export class AddVehicleComponent {
   selectedImage: undefined | string;
   isLoading: boolean = false;
   errorMessage: string = '';
+  successTitleMsg = '';
+  successBodyMsg = '';
 
   constructor(
     private http: HttpClient,
@@ -81,13 +83,15 @@ export class AddVehicleComponent {
         },
         complete: () => {
           this.isLoading = false;
+          this.successTitleMsg = 'Add vehicle';
+          this.successBodyMsg = `${make} ${model} added successful!`;
           this.showSuccessMsg = true;
           this.errorMessage = '';
           form.reset();
           this.selectedImage = undefined;
           setTimeout(() => {
             this.showSuccessMsg = false;
-          }, 3000);
+          }, 4000);
         },
       });
   }

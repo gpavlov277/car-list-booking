@@ -10,4 +10,8 @@ export class CarListService {
   getAllVehicles() {
     return this.http.get('/api/vehicle/all');
   }
+
+  deleteVehicle(id: string) {
+    return this.http.delete(`/api/vehicle/delete/${id}`);
+  }
 }

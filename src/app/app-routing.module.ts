@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MainComponent } from './main/main.component';
-
 import { AddVehicleComponent } from './car/add-vehicle/add-vehicle.component';
 import { AuthActivate } from './core/guards/auth.guard';
 import { FavouritesComponent } from './car/favourites/favourites.component';
 import { BookedComponent } from './car/booked/booked.component';
 import { EditVehicleComponent } from './car/edit-vehicle/edit-vehicle.component';
 import { DetailVehicleComponent } from './car/detail-vehicle/detail-vehicle.component';
+import { CarListComponent } from './car-list/car-list.component';
 
 const routes: Routes = [
   { path: 'home', redirectTo: '' },
-  { path: '', pathMatch: 'full', component: MainComponent },
+  { path: '', pathMatch: 'full', component: CarListComponent },
   {
     path: 'add-vehicle',
     component: AddVehicleComponent,
@@ -33,6 +32,7 @@ const routes: Routes = [
     component: EditVehicleComponent,
     canActivate: [AuthActivate],
   },
+
   {
     path: 'details-vehicle',
     component: DetailVehicleComponent,
