@@ -19,6 +19,9 @@ export class UserService implements OnDestroy {
   get userId() {
     return this.user?._id;
   }
+  get userFavourites() {
+    return this.user?.favouriteCars;
+  }
 
   subscription: Subscription;
 
@@ -58,5 +61,8 @@ export class UserService implements OnDestroy {
     return this.http
       .get<User>('/api/users/profile')
       .pipe(tap((user) => this.user$$.next(user)));
+  }
+  getFavourites(userId: string) {
+    return this.http.get(`/api/users/favourites/${userId}`);
   }
 }

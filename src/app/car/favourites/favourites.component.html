@@ -10,19 +10,13 @@
       </div>
       <table class="table table-striped table-hover mt-5">
         <tbody>
-          <tr>
+          <tr *ngFor="let fav of favourites">
             <td>
-              <a href="#"
-                ><img
-                  src="assets/images/cars/gls.webp"
-                  class="avatar"
-                  alt="CarImage"
-                />
-                Mercedes-Benz GLS580 4Matic</a
-              >
+              <a href="#"><img src={{fav.image}} class="avatar" alt="CarImage" />{{fav.make}} {{fav.model}}
+              </a>
             </td>
 
-            <td><button class="btn btn-danger">Remove</button></td>
+            <td><button class="btn btn-danger" (click)="removeFromFav(fav._id)">Remove</button></td>
           </tr>
         </tbody>
       </table>

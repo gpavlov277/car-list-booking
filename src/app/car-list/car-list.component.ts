@@ -28,6 +28,8 @@ export class CarListComponent implements OnInit {
   vehicleId = '';
   btnEl: any;
 
+  likedCars: string[] = [];
+
   constructor(
     private carListService: CarListService,
     private router: Router,
@@ -40,8 +42,14 @@ export class CarListComponent implements OnInit {
       this.isLoading = false;
     });
   }
+  getUser() {
+    this.userService.getUserProfile().subscribe((data) => {
+      this.likedCars = data.favouriteCars;
+    });
+  }
   ngOnInit(): void {
     this.getAllCars();
+    this.getUser();
   }
   getId(id: string, btn: HTMLElement) {
     this.vehicleId = id;
@@ -68,7 +76,20 @@ export class CarListComponent implements OnInit {
         console.log(err);
       },
       complete: () => {
-        console.log('Liked');
+        this.getAllCars();
+        this.getUser();
+      },
+    });
+  }
+  onDislike(vehicleId: string) {
+    const userId = this.userService.userId;
+    this.carListService.dislikeVehicle(vehicleId, userId!).subscribe({
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        this.getAllCars();
+        this.getUser();
       },
     });
   }

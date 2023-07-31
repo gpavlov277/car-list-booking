@@ -19,4 +19,9 @@ export class CarListService {
       userId,
     });
   }
+  dislikeVehicle(vehicleId: string, userId: string) {
+    return this.http.put(`/api/vehicle/dislike/${vehicleId}`, {
+      userId,
+    });
+  }
 }

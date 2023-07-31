@@ -41,8 +41,13 @@
 
         <tbody>
           <tr *ngFor="let car of allCars">
-            <td>
+
+
+            <td *ngIf="!likedCars.includes(car._id)">
               <span (click)="onLike(car._id)" class="heart-normal"><fa-icon [icon]="faHeart"></fa-icon></span>
+            </td>
+            <td *ngIf="likedCars.includes(car._id)">
+              <span (click)="onDislike(car._id)" class="heart-liked"><fa-icon [icon]="faHeart"></fa-icon></span>
             </td>
             <td>
               <a href="#"><img [src]="car.image" class="avatar" alt="IMG" />
