@@ -44,24 +44,32 @@
 
 
             <td *ngIf="!likedCars.includes(car._id)">
-              <span (click)="onLike(car._id)" class="heart-normal"><fa-icon [icon]="faHeart"></fa-icon></span>
+              <span *ngIf="userId" (click)="onLike(car._id)" class="heart-normal"><fa-icon
+                  [icon]="faHeart"></fa-icon></span>
+              <span *ngIf="!userId" routerLink="/login" class="heart-normal"><fa-icon [icon]="faHeart"></fa-icon></span>
             </td>
+
             <td *ngIf="likedCars.includes(car._id)">
               <span (click)="onDislike(car._id)" class="heart-liked"><fa-icon [icon]="faHeart"></fa-icon></span>
             </td>
             <td>
-              <a href="#"><img [src]="car.image" class="avatar" alt="IMG" />
+
+              <a routerLink="/details-vehicle/{{car._id}}"><img [src]="car.image" class="avatar" alt="IMG" />
                 {{car.make}} {{car.model}}</a>
             </td>
             <td>{{car.created_at.slice(0,10)}}</td>
             <td>{{car.location}}</td>
             <td><span class="status text-success">&bull;</span> Active</td>
             <td>
-              <a routerLink="/edit-vehicle/{{car._id}}" class="settings" title="Edit" data-toggle="tooltip"><fa-icon
-                  [icon]="faEdit"></fa-icon></a>
-              <a class="delete" title="Delete" data-toggle="tooltip" type="button" data-bs-toggle="modal" #deleteBtn
-                data-bs-target="#confirmModal"><fa-icon [icon]="faTrash"
+              <a routerLink="/edit-vehicle/{{car._id}}" class="settings" title="Edit" type="button"
+                data-toggle="tooltip"><fa-icon [icon]="faEdit"></fa-icon></a>
+
+
+              <a *ngIf="userId" class="delete" title="Delete" data-toggle="tooltip" type="button" data-bs-toggle="modal"
+                #deleteBtn data-bs-target="#confirmModal"><fa-icon [icon]="faTrash"
                   (click)="getId(car._id,deleteBtn)"></fa-icon></a>
+              <a *ngIf="!userId" routerLink="/login" class="delete" title="Delete" type="button" #deleteBtn><fa-icon
+                  [icon]="faTrash"></fa-icon></a>
             </td>
           </tr>
         </tbody>

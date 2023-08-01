@@ -29,6 +29,7 @@ export class CarListComponent implements OnInit {
   btnEl: any;
 
   likedCars: string[] = [];
+  userId: string | undefined;
 
   constructor(
     private carListService: CarListService,
@@ -45,6 +46,7 @@ export class CarListComponent implements OnInit {
   getUser() {
     this.userService.getUserProfile().subscribe((data) => {
       this.likedCars = data.favouriteCars;
+      this.userId = data._id;
     });
   }
   ngOnInit(): void {
@@ -71,6 +73,9 @@ export class CarListComponent implements OnInit {
   }
   onLike(vehicleId: string): void {
     const userId = this.userService.userId;
+    if (!userId) {
+      return;
+    }
     this.carListService.likeVehicle(vehicleId, userId!).subscribe({
       error: (err) => {
         console.log(err);
@@ -83,6 +88,9 @@ export class CarListComponent implements OnInit {
   }
   onDislike(vehicleId: string) {
     const userId = this.userService.userId;
+    if (!userId) {
+      return;
+    }
     this.carListService.dislikeVehicle(vehicleId, userId!).subscribe({
       error: (err) => {
         console.log(err);

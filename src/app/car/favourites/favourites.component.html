@@ -12,7 +12,8 @@
         <tbody>
           <tr *ngFor="let fav of favourites">
             <td>
-              <a href="#"><img src={{fav.image}} class="avatar" alt="CarImage" />{{fav.make}} {{fav.model}}
+              <a routerLink="/details-vehicle/{{fav._id}}"><img src={{fav.image}} class="avatar"
+                  alt="CarImage" />{{fav.make}} {{fav.model}}
               </a>
             </td>
 

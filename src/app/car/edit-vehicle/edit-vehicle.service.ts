@@ -28,7 +28,7 @@ export class EditVehicleService {
   }
 
   getVehicleById(id: string) {
-    return this.http.get<Vehicle>(`/api/vehicle/${id}`);
+    return this.http.get<Vehicle>(`/api/vehicle/details-vehicle/${id}`);
   }
   constructor(private http: HttpClient) {}
 }

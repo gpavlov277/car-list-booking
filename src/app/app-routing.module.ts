@@ -10,8 +10,8 @@ import { DetailVehicleComponent } from './car/detail-vehicle/detail-vehicle.comp
 import { CarListComponent } from './car-list/car-list.component';
 
 const routes: Routes = [
-  { path: 'home', redirectTo: '' },
-  { path: '', pathMatch: 'full', component: CarListComponent },
+  { path: 'home', pathMatch: 'full', redirectTo: '' },
+  { path: '', component: CarListComponent },
   {
     path: 'add-vehicle',
     component: AddVehicleComponent,
@@ -36,6 +36,11 @@ const routes: Routes = [
   {
     path: 'details-vehicle',
     component: DetailVehicleComponent,
+  },
+  {
+    path: 'details-vehicle/:vehicleId',
+    component: DetailVehicleComponent,
+    // canActivate: [AuthActivate],
   },
 ];
 

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class CarService {
   getOneCar(id: string) {
-    this.http.get(`/api/vehicle/:${id}`);
+    return this.http.get(`/api/vehicle/details-vehicle/${id}`);
   }
 
   constructor(private http: HttpClient) {}
