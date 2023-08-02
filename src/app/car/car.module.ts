@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { BookModalComponent } from './book-modal/book-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     BookedComponent,
     EditVehicleComponent,
     DetailVehicleComponent,
+    BookModalComponent,
   ],
   imports: [
     CommonModule,

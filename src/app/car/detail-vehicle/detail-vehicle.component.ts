@@ -32,6 +32,7 @@ export class DetailVehicleComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.router.navigate(['/']);
       },
       complete: () => {
         this.state.isLoading = false;
