@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CarService } from '../car.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -36,7 +36,6 @@ export class DetailVehicleComponent implements OnInit {
       },
       complete: () => {
         this.state.isLoading = false;
-        console.log(this.vehicleObject);
       },
     });
   }

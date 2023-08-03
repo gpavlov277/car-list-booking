@@ -5,6 +5,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { EmailDirective } from './validators/email.directive';
 import { SuccessComponent } from './success-toast/success.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DatepickerComponent } from './datepicker/datepicker.component';
 
 @NgModule({
   declarations: [
@@ -13,12 +14,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EmailDirective,
     SuccessComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, DatepickerComponent],
   exports: [
     ConfirmModalComponent,
     EmailDirective,
     LoaderComponent,
     SuccessComponent,
+    DatepickerComponent,
   ],
 })
 export class SharedModule {}

@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmailDirective } from './shared/validators/email.directive';
 import { appInterceptorProvider } from './app.interceptor';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     CarModule,
     SharedModule,
     HttpClientModule,
+    NoopAnimationsModule,
   ],
   providers: [appInterceptorProvider],
   bootstrap: [AppComponent],
