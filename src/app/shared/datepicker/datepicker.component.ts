@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import * as moment from 'moment';
 import { Vehicle } from 'src/app/types/vehicle';
 import { UserService } from 'src/app/user/user.service';
+import { CarService } from 'src/app/car/car.service';
 
 @Component({
   selector: 'app-datepicker',
@@ -29,8 +30,12 @@ export class DatepickerComponent implements OnInit {
 
   bookingDate: any = {};
   userId: string | undefined;
+  vehicleId: string | undefined;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private carService: CarService
+  ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date();
     this.maxDate = new Date(currentYear + 1, 11, 31)!;
@@ -46,12 +51,38 @@ export class DatepickerComponent implements OnInit {
     this.bookingDate['endDate'] = event.value;
     this.bookingDate.endDate = new Date(this.bookingDate.endDate);
   }
-  onBookNow(fromDate: string, toDate: string) {
+  onBookNow(fromDate: Date, toDate: Date, notes: HTMLInputElement) {
     console.log(fromDate, toDate);
-    const isBefore = moment(fromDate).isBefore(toDate);
-    console.log(isBefore);
+    console.log(this.vehicleId);
+    console.log(this.userId);
+    console.log(notes.value);
+
+    this.carService
+      .bookCar(
+        this.vehicleId!,
+        this.userId!,
+        fromDate,
+        toDate,
+        '12:00',
+        '13:30',
+        notes.value
+      )
+      .subscribe({
+        next: (data) => {
+          console.log('Next', data);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          console.log('complete req');
+        },
+      });
+
+    // const isBefore = moment(fromDate).isBefore(toDate);
   }
   ngOnInit(): void {
+    this.vehicleId = this.vehicleInformationModal?._id;
     this.userService.getUserProfile().subscribe({
       next: (data) => {
         this.userId = data._id;

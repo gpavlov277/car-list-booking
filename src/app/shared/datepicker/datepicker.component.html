@@ -1,5 +1,5 @@
 <mat-form-field class="col-lg-6 p-4 book-now-col">
-    <mat-label>Choose a date</mat-label>
+    <mat-label>Choose a date from</mat-label>
     <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" (dateChange)="setStartDate($event)"
         disabled="">
     <mat-hint>MM/DD/YYYY</mat-hint>
@@ -8,13 +8,21 @@
 </mat-form-field>
 
 <mat-form-field class="col-lg-6 p-4 book-now-col">
-    <mat-label>Choose a date</mat-label>
+    <mat-label>Choose a date to</mat-label>
     <input matInput [matDatepicker]="toDate" [min]="minDate" [max]="maxDate" (dateChange)="setEndDate( $event)"
         disabled="">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="toDate"></mat-datepicker-toggle>
     <mat-datepicker #toDate disabled="false"></mat-datepicker>
 </mat-form-field>
+
+<form class="col-lg-12 p-4 book-now-col">
+    <mat-form-field class="w-100">
+        <mat-label>Add Note</mat-label>
+        <input matInput #notes placeholder="Broken front bumper" value="">
+    </mat-form-field>
+</form>
+
 <!-- <div class="container">
     <p class="validation-error">This vehicle is reserved for dates you selected!</p>
 </div> -->
@@ -22,6 +30,7 @@
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
         Close
     </button>
-    <button type="button" class="btn btn-success" (click)="onBookNow(bookingDate.startDate,bookingDate.endDate)">Book
+    <button type="button" class="btn btn-success"
+        (click)="onBookNow(bookingDate.startDate,bookingDate.endDate,notes)">Book
         Now</button>
 </div>
