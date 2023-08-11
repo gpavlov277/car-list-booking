@@ -16,12 +16,57 @@
     <mat-datepicker #toDate disabled="false"></mat-datepicker>
 </mat-form-field>
 
-<form class="col-lg-12 p-4 book-now-col">
-    <mat-form-field class="w-100">
-        <mat-label>Add Note</mat-label>
-        <input matInput #notes placeholder="Broken front bumper" value="">
+
+
+
+<div class="row">
+    <mat-form-field class="col-lg-2">
+        <mat-label>Start hours</mat-label>
+        <mat-select [(ngModel)]="selectedHour" (ngModelChange)="onTimeChanged($event)"
+            [ngModelOptions]="{standalone: true}">
+            <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour }}</mat-option>
+        </mat-select>
     </mat-form-field>
-</form>
+
+    <mat-form-field class="col-lg-2">
+        <mat-label>Start minutes</mat-label>
+        <mat-select [(ngModel)]="selectedMinute" (ngModelChange)="onTimeChanged($event)"
+            [ngModelOptions]="{standalone: true}">
+            <mat-option *ngFor="let minute of minutes" [value]="minute">{{ minute }}</mat-option>
+        </mat-select>
+
+    </mat-form-field>
+    <div class="col-lg-4"></div>
+    <mat-form-field class="col-lg-2">
+        <mat-label>End hours</mat-label>
+        <mat-select [(ngModel)]="selectedHourReturn" (ngModelChange)="onTimeChanged($event)"
+            [ngModelOptions]="{standalone: true}">
+            <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-lg-2">
+        <mat-label>End minutes</mat-label>
+        <mat-select [(ngModel)]="selectedMinuteReturn" (ngModelChange)="onTimeChanged($event)"
+            [ngModelOptions]="{standalone: true}">
+            <mat-option *ngFor="let minute of minutes" [value]="minute">{{ minute }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>
+
+
+<mat-form-field class="col-lg-12 w-100">
+    <mat-label>Add Note</mat-label>
+    <input matInput #notes placeholder="Broken front bumper" value="">
+</mat-form-field>
+
+<p class="validation-error">{{errorMessage}}</p>
+
+
+
+
+
 
 <!-- <div class="container">
     <p class="validation-error">This vehicle is reserved for dates you selected!</p>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CarService } from '../car.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-detail-vehicle',
@@ -16,9 +17,11 @@ export class DetailVehicleComponent implements OnInit {
   constructor(
     private carService: CarService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
   ngOnInit(): void {
+    this.state.isLogged = this.userService.isLogged;
     this.state.isLoading = true;
     const vehicleId: string | null =
       this.activatedRoute.snapshot.paramMap.get('vehicleId');

@@ -65,4 +65,7 @@ export class UserService implements OnDestroy {
   getFavourites(userId: string) {
     return this.http.get(`/api/users/favourites/${userId}`);
   }
+  getBooked() {
+    return this.http.get(`/api/users/booked/${this.userId}`);
+  }
 }

@@ -13,116 +13,35 @@
           <tr>
             <th></th>
             <th class="text-center"></th>
-            <th>Booking Date</th>
+            <th>Take Date</th>
             <th>Return Date</th>
             <th>Status</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr *ngFor="let car of bookedVehicles">
             <td>
               <span class="heart-red"></span>
             </td>
             <td>
-              <a href="#"
-                ><img
-                  src="assets/images/cars/gls.webp"
-                  class="avatar"
-                  alt="CarImage"
-                />
-                Mercedes-Benz GLS580 4Matic</a
-              >
+              <a href="#"><img src={{car.vehicle.image}} class="avatar" alt="CarImage" />
+                {{car.vehicle.make}} {{car.vehicle.model}}</a>
             </td>
-            <td>14.07.2023 12:45</td>
-            <td>17.07.2013 15:30</td>
-            <td><span class="status text-success">&bull;</span> Active</td>
+
+            <td>{{moment(car.reservationFromDate).format('DD/MM/YYYY - HH:mm:ss')}}</td>
+            <td>{{moment(car.reservationToDate).format('DD/MM /YYYY - HH:mm:ss')}}</td>
+            <td *ngIf="!moment(car.reservationToDate).isBefore(moment(today?._d))"><span
+                class="status text-success">&bull;</span> Active</td>
+            <td *ngIf="moment(car.reservationToDate).isBefore(moment(today?._d))"><span
+                class="status text-danger">&bull;</span> Suspended</td>
+            <td>{{moment(car.reservationToDate).fromNow()}}</td>
+            <td></td>
+
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
-<!-- <tr>
-        <td>2</td>
-        <td>
-          <a href="#"
-            ><img
-              src="assets/images/cars/eqs-suv.webp"
-              class="avatar"
-              alt="Avatar"
-            />
-            Mercedes-Benz EQS580 SUV</a
-          >
-        </td>
-        <td>05/08/2014</td>
-        <td>Publisher</td>
-        <td><span class="status text-success">&bull;</span> Active</td>
-        <td>
-          <a
-            href="#"
-            class="settings"
-            title="Settings"
-            data-toggle="tooltip"
-            ><i class="material-icons">&#xE8B8;</i></a
-          >
-          <a href="#" class="delete" title="Delete" data-toggle="tooltip"
-            ><i class="material-icons">&#xE5C9;</i></a
-          >
-        </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>
-          <a href="#"
-            ><img
-              src="assets/images/cars/s-class.webp"
-              class="avatar"
-              alt="Avatar"
-            />
-            Mercedes-Benz S580L 4Matic</a
-          >
-        </td>
-        <td>11/05/2015</td>
-        <td>Publisher</td>
-        <td><span class="status text-danger">&bull;</span> Suspended</td>
-        <td>
-          <a
-            href="#"
-            class="settings"
-            title="Settings"
-            data-toggle="tooltip"
-            ><i class="material-icons">&#xE8B8;</i></a
-          >
-          <a href="#" class="delete" title="Delete" data-toggle="tooltip"
-            ><i class="material-icons">&#xE5C9;</i></a
-          >
-        </td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>
-          <a href="#"
-            ><img
-              src="assets/images/cars/c-class.webp"
-              class="avatar"
-              alt="Avatar"
-            />
-            Mercedes-Benz C220d</a
-          >
-        </td>
-        <td>06/09/2016</td>
-        <td>Reviewer</td>
-        <td><span class="status text-success">&bull;</span> Active</td>
-        <td>
-          <a
-            href="#"
-            class="settings"
-            title="Settings"
-            data-toggle="tooltip"
-            ><i class="material-icons">&#xE8B8;</i></a
-          >
-          <a href="#" class="delete" title="Delete" data-toggle="tooltip"
-            ><i class="material-icons">&#xE5C9;</i></a
-          >
-        </td>
-      </tr> -->

@@ -12,6 +12,13 @@ import { Vehicle } from 'src/app/types/vehicle';
 import { UserService } from 'src/app/user/user.service';
 import { CarService } from 'src/app/car/car.service';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule for mat-select
+
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { Route, Router } from '@angular/router';
+
 @Component({
   selector: 'app-datepicker',
   templateUrl: './datepicker.component.html',
@@ -23,18 +30,40 @@ import { CarService } from 'src/app/car/car.service';
     MatDatepickerModule,
     MatNativeDateModule,
     CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    FormsModule,
   ],
 })
 export class DatepickerComponent implements OnInit {
   @Input() vehicleInformationModal: Vehicle | undefined;
 
+  errorMessage: string = '';
+
   bookingDate: any = {};
   userId: string | undefined;
   vehicleId: string | undefined;
 
+  selectedTimeFrom: Date | undefined;
+  selectedTimeTo: Date | undefined;
+
+  selectedHour: number | undefined;
+  selectedMinute: number | undefined;
+
+  selectedHourReturn: number | undefined;
+  selectedMinuteReturn: number | undefined;
+
+  hours: number[] = Array.from({ length: 24 }, (_, i) => i);
+  minutes: number[] = Array.from({ length: 60 }, (_, i) => i);
+
   constructor(
     private userService: UserService,
-    private carService: CarService
+    private carService: CarService,
+    private router: Router
   ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date();
@@ -43,43 +72,68 @@ export class DatepickerComponent implements OnInit {
   minDate: Date | undefined;
   maxDate: Date | undefined;
 
+  onTimeChanged(e: Event): void {
+    if (this.selectedHour !== undefined && this.selectedMinute !== undefined) {
+      this.selectedTimeFrom = new Date();
+      this.selectedTimeTo = new Date();
+
+      console.log(this.selectedHour);
+      this.selectedTimeFrom.setHours(this.selectedHour);
+      this.selectedTimeFrom.setMinutes(this.selectedMinute);
+
+      this.selectedTimeTo.setHours(this.selectedHourReturn!);
+      this.selectedTimeTo.setMinutes(this.selectedMinuteReturn!);
+    }
+  }
   setStartDate(event: MatDatepickerInputEvent<Date>) {
     this.bookingDate['startDate'] = event.value;
     this.bookingDate.startDate = new Date(this.bookingDate.startDate);
+
+    if (this.bookingDate.startDate && this.bookingDate.endDate) {
+      this.errorMessage = '';
+    }
   }
   setEndDate(event: MatDatepickerInputEvent<Date>) {
     this.bookingDate['endDate'] = event.value;
     this.bookingDate.endDate = new Date(this.bookingDate.endDate);
+
+    if (this.bookingDate.startDate && this.bookingDate.endDate) {
+      this.errorMessage = '';
+    }
   }
   onBookNow(fromDate: Date, toDate: Date, notes: HTMLInputElement) {
-    console.log(fromDate, toDate);
-    console.log(this.vehicleId);
-    console.log(this.userId);
-    console.log(notes.value);
+    if (!this.bookingDate.startDate || !this.bookingDate.endDate) {
+      this.errorMessage = 'Select start date and end date!';
+      return;
+    }
+    this.bookingDate.startDate.setHours(this.selectedHour);
+    this.bookingDate.startDate.setMinutes(this.selectedMinute);
 
+    this.bookingDate.endDate.setHours(this.selectedHourReturn);
+    this.bookingDate.endDate.setMinutes(this.selectedMinuteReturn);
+
+    console.log('rented from: ' + this.bookingDate.startDate);
+    console.log('rented to: ' + this.bookingDate.endDate);
     this.carService
       .bookCar(
         this.vehicleId!,
         this.userId!,
         fromDate,
         toDate,
-        '12:00',
-        '13:30',
+
         notes.value
       )
       .subscribe({
-        next: (data) => {
-          console.log('Next', data);
-        },
+        next: (data) => {},
         error: (err) => {
           console.log(err);
+          this.errorMessage = err.error.message;
         },
         complete: () => {
           console.log('complete req');
+          this.errorMessage = '';
         },
       });
-
-    // const isBefore = moment(fromDate).isBefore(toDate);
   }
   ngOnInit(): void {
     this.vehicleId = this.vehicleInformationModal?._id;

@@ -14,8 +14,6 @@ export class CarService {
     user: string,
     reservationFromDate: Date,
     reservationToDate: Date,
-    reservationFromHour: string,
-    reservationToHour: string,
     notes: string
   ) {
     return this.http.post('/api/reservations/new', {
@@ -23,10 +21,9 @@ export class CarService {
       user,
       reservationFromDate,
       reservationToDate,
-      reservationFromHour,
-      reservationToHour,
       notes,
     });
   }
+
   constructor(private http: HttpClient) {}
 }

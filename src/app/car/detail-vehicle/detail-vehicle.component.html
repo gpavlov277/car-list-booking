@@ -13,7 +13,7 @@
                             <h2>{{vehicleObject.make}} {{vehicleObject.model}}</h2>
                         </ng-container>
                     </div>
-                    <div class="col-sm-3 book-now-col">
+                    <div *ngIf="state.isLogged" class="col-sm-3 book-now-col">
                         <a class="btn btn-success" data-toggle="tooltip" type="button" data-bs-toggle="modal"
                             data-bs-target="#bookModal">
                             <span>Book Now</span></a>
