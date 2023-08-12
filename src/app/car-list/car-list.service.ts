@@ -24,4 +24,7 @@ export class CarListService {
       userId,
     });
   }
+  searchVehicle(searchKey: string) {
+    return this.http.get(`/api/vehicle/search/${searchKey}`);
+  }
 }

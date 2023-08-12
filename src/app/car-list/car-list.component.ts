@@ -101,4 +101,24 @@ export class CarListComponent implements OnInit {
       },
     });
   }
+  onSearch(searchKey: HTMLInputElement) {
+    const param: string = searchKey.value;
+    console.log(param);
+    if (param == '') {
+      this.getAllCars();
+      return;
+    }
+    this.carListService.searchVehicle(param).subscribe({
+      next: (data) => {
+        this.allCars = data;
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('search completed successfuly');
+      },
+    });
+  }
 }
