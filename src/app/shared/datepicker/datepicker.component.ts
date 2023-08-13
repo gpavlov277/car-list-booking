@@ -78,6 +78,11 @@ export class DatepickerComponent implements OnInit {
       this.selectedTimeTo = new Date();
 
       console.log(this.selectedHour);
+      console.log(this.selectedMinute);
+
+      console.log(this.selectedHourReturn);
+      console.log(this.selectedMinuteReturn);
+
       this.selectedTimeFrom.setHours(this.selectedHour);
       this.selectedTimeFrom.setMinutes(this.selectedMinute);
 
@@ -101,7 +106,7 @@ export class DatepickerComponent implements OnInit {
       this.errorMessage = '';
     }
   }
-  onBookNow(fromDate: Date, toDate: Date, notes: HTMLInputElement) {
+  onBookNow(fromDate: Date, toDate: Date, notes: HTMLInputElement, e: Event) {
     if (!this.bookingDate.startDate || !this.bookingDate.endDate) {
       this.errorMessage = 'Select start date and end date!';
       return;
@@ -130,7 +135,13 @@ export class DatepickerComponent implements OnInit {
           this.errorMessage = err.error.message;
         },
         complete: () => {
-          console.log('complete req');
+          const backdrop = document.querySelector('.modal-backdrop');
+          backdrop?.remove();
+          const modal = document.getElementById('bookModal');
+          modal!.classList.remove('show');
+          document.body.classList.remove('modal-open');
+          document.body.style.overflow = '';
+          document.body.style.padding = '';
           this.errorMessage = '';
         },
       });

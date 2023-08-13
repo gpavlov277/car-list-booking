@@ -42,7 +42,7 @@
             <th class="text-center"></th>
             <th>Date Created</th>
             <th>Location</th>
-            <th>Status</th>
+            <!-- <th>Status</th> -->
             <th>Action</th>
           </tr>
 
@@ -69,7 +69,7 @@
             </td>
             <td>{{car.created_at.slice(0,10)}}</td>
             <td>{{car.location}}</td>
-            <td><span class="status text-success">&bull;</span> Active</td>
+            <!-- <td><span class="status text-success">&bull;</span> Active</td> -->
             <td>
               <a routerLink="/edit-vehicle/{{car._id}}" class="settings" title="Edit" type="button"
                 data-toggle="tooltip"><fa-icon [icon]="faEdit"></fa-icon></a>

@@ -20,8 +20,12 @@ export class DetailVehicleComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) {}
+
+  get isLogged(): boolean {
+    return this.userService.isLogged;
+  }
   ngOnInit(): void {
-    this.state.isLogged = this.userService.isLogged;
+    this.state.isLogged = this.isLogged;
     this.state.isLoading = true;
     const vehicleId: string | null =
       this.activatedRoute.snapshot.paramMap.get('vehicleId');
